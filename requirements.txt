@@ -1,5 +1,8 @@
 jupyter
+jupyterlab
 opendatasets
 pytorch-lightning
 scikit-learn
 seaborn
+black
+flake8

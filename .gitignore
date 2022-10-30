@@ -124,5 +124,5 @@ dmypy.json
 .pyre/
 
 # CUSTOM
-datasets/
+histopathologic-cancer-detection/
 lightning_logs/
