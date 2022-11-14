@@ -1,22 +1,16 @@
 from PIL import Image
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split
-
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import shutil
 import pandas as pd
 
-from torch import nn, optim
-from torch.utils.data import DataLoader, Dataset
-from torch.utils.data.sampler import SubsetRandomSampler
-from torchmetrics.functional import accuracy
-from torchvision.datasets import ImageFolder
-from torchvision.utils import make_grid
 import pytorch_lightning as pl
 import torch
 import torchvision.transforms as T
+
+from torch import nn, optim
+from torch.utils.data import Dataset
+from torchmetrics.functional import accuracy
 
 
 # Download 'https://www.kaggle.com/competitions/histopathologic-cancer-detection/'
