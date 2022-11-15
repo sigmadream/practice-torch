@@ -4,7 +4,6 @@
 
 ## TODO
 
-- [ ] (Review!) Tensorflow
 - [ ] Pytorch Lightning
 - [ ] fastai
 - [ ] PyTorch Geometric
