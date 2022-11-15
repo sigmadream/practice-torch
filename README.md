@@ -23,7 +23,10 @@
 
 ```
 // Virtualenv recommendation
-$ pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
-$ python.exe -m pip install --upgrade pip
+$ python3 -m venv .venv
+$ source .venv/bin/activate
+$ python -m pip install --upgrade pip
+$ python -m pip install --upgrade setuptools
+$ pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 $ pip install -r requirements.txt
 ```
