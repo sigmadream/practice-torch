@@ -1,4 +1,4 @@
-from PIL import Image
+import argparse
 import numpy as np
 import os
 import shutil
@@ -8,6 +8,7 @@ import pytorch_lightning as pl
 import torch
 import torchvision.transforms as T
 
+from PIL import Image
 from torch import nn, optim
 from torch.utils.data import Dataset, DataLoader
 from torchmetrics.functional import accuracy
@@ -210,40 +211,47 @@ class CNNImageClassifier(pl.LightningModule):
 
 
 if __name__ == "__main__":
-    print("1.Starting Preparation of Data")
-    selected_image_list = random_image_list()
-    preprocessing(selected_image_list)
-    train_set, test_set = data_loader(selected_image_list)
+    parser = argparse.ArgumentParser(description='CNN for PyTorch')
+    parser.add_argument('--test', action='store_true', default=False, help='Train or Test')
 
-    print("2.Starting Data Loader")
-    batch_size = 256
-    train_dataloader = DataLoader(
-        train_set, batch_size, num_workers=2, pin_memory=True, shuffle=True
-    )
+    args = parser.parse_args()
+    if not args.test:
+    
+        print("1.Starting Preparation of Data")
+        selected_image_list = random_image_list()
+        preprocessing(selected_image_list)
+        train_set, test_set = data_loader(selected_image_list)
 
-    print("3.Starting Learning")
-    model = CNNImageClassifier()
-    trainer = pl.Trainer(accelerator="gpu", devices=1)
-    # trainer = pl.Trainer(accelerator="gpu", devices=1, max_epochs=10)
-    trainer.fit(model, train_dataloaders=train_dataloader)
+        print("2.Starting Data Loader")
+        batch_size = 256
+        train_dataloader = DataLoader(
+            train_set, batch_size, num_workers=2, pin_memory=True, shuffle=True
+        )
 
-    print("4.Starting Model Evaluation")
-    test_dataloader = DataLoader(test_set, batch_size, num_workers=2, pin_memory=True)
-    trainer.test(dataloaders=test_dataloader)
-    preds = valid_model(model=model, test_dataloader=test_dataloader)
+        print("3.Starting Learning")
+        model = CNNImageClassifier()
+        trainer = pl.Trainer(accelerator="gpu", devices=1)
+        # trainer = pl.Trainer(accelerator="gpu", devices=1, max_epochs=10)
+        trainer.fit(model, train_dataloaders=train_dataloader)
 
-    test_preds = pd.DataFrame(
-        {"imgs": test_set.list_image_files, "labels": test_set.labels, "preds": preds}
-    )
-    test_preds.to_csv("test_preds.csv", index=False)
+        print("4.Starting Model Evaluation")
+        test_dataloader = DataLoader(test_set, batch_size, num_workers=2, pin_memory=True)
+        trainer.test(dataloaders=test_dataloader)
+        preds = valid_model(model=model, test_dataloader=test_dataloader)
 
-    # test_preds = pd.read_csv("test_preds.csv")
-    # test_preds["imgs"] = test_preds["imgs"].apply(lambda x: x.split(".")[0])
-    # test_preds.head()
-    # test_preds["predictions"] = 1
-    # test_preds.loc[test_preds["preds"] < 0, "predictions"] = 0
-    # test_preds.shape
-    # test_preds.head()
-    # len(
-    #     np.where(test_preds["labels"] == test_preds["predictions"])[0]
-    # ) / test_preds.shape[0]
+        test_preds = pd.DataFrame(
+            {"imgs": test_set.list_image_files, "labels": test_set.labels, "preds": preds}
+        )
+        test_preds.to_csv("test_preds.csv", index=False)
+    else:
+        test_preds = pd.read_csv("test_preds.csv")
+        test_preds["imgs"] = test_preds["imgs"].apply(lambda x: x.split(".")[0])
+        test_preds.head()
+        test_preds["predictions"] = 1
+        test_preds.loc[test_preds["preds"] < 0, "predictions"] = 0
+        test_preds.shape
+        test_preds.head()        
+        score = len(
+            np.where(test_preds["labels"] == test_preds["predictions"])[0]
+        ) / test_preds.shape[0]
+        print(f"Score is {score}")
