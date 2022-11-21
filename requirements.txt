@@ -6,3 +6,6 @@ scikit-learn
 seaborn
 black
 flake8
+transformers
+'lightning-flash[audio,image, video, text]'
+lightning-flash

@@ -126,3 +126,4 @@ dmypy.json
 # CUSTOM
 histopathologic-cancer-detection/
 lightning_logs/
+PUBHEALTH/
