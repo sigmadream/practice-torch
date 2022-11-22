@@ -7,5 +7,6 @@ seaborn
 black
 flake8
 transformers
-'lightning-flash[audio,image, video, text]'
 lightning-flash
+lightning-flash[audio,image, video, text]
+pillow
