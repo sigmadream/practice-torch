@@ -4,16 +4,16 @@
 
 ## TODO
 
-- [ ] Pytorch Lightning
-- [ ] fastai
+- [ ] PyTorch
+- [ ] PyTorch Lightning
 - [ ] PyTorch Geometric
+- [ ] fastai
 
 ## Ref.
 
-- [ ] [Kunal Sawarkar, Deep Learning with PyTorch Lightning, Packt, 2022](https://www.packtpub.com/product/deep-learning-with-pytorch-lightning/9781800561618)
 - [ ] [Daniel Voigt Godoy, Deep Learning with PyTorch Step-by-Step A Beginner’s Guide, 2022](https://leanpub.com/pytorch)
+- [ ] [Kunal Sawarkar, Deep Learning with PyTorch Lightning, Packt, 2022](https://www.packtpub.com/product/deep-learning-with-pytorch-lightning/9781800561618)
 - [ ] [Sebastian Raschka et al., Machine Learning with PyTorch and Scikit-Learn, Packt, 2022](https://www.packtpub.com/product/machine-learning-with-pytorch-and-scikit-learn/9781801819312)
-
 
 ## Setup
 
