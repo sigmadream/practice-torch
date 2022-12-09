@@ -1,13 +1,10 @@
-jupyter
 jupyterlab
-opendatasets
 pytorch-lightning
+pandas
 scikit-learn
 seaborn
-black
-flake8
 transformers
-lightning-flash
 lightning-flash[audio,image, video, text]
-pillow
 torchviz
+autopep8
+ipywidgets

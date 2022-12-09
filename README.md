@@ -23,9 +23,13 @@
 ```
 // Virtualenv recommendation
 $ python3 -m venv .venv
+// for linux
 $ source .venv/bin/activate
+// for window
+$ .\.venv\Scripts\activate
 $ python -m pip install --upgrade pip
 $ python -m pip install --upgrade setuptools
+$ python -m pip install --upgrade wheel
 $ pip install torch torchvision torchaudio torchtext --extra-index-url https://download.pytorch.org/whl/cu116
 $ pip install -r requirements.txt
 ```
